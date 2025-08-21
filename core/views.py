@@ -10,11 +10,11 @@ from django.urls import reverse
 from .models import *
 
 # Create your views here.
+@login_required
 def Home(request):
     return render(request, 'index.html')
 
 def RegisterView(request):
-
     if request.method == "POST":
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -25,6 +25,7 @@ def RegisterView(request):
 
         user_data_has_error = False
 
+        # make sure email and username are not being used
         if User.objects.filter(username=username).exists():
             user_data_has_error = True
             messages.error(request, 'Username already exists')
@@ -51,4 +52,17 @@ def RegisterView(request):
     return render(request, 'register.html')
 
 def LoginView(request):
+    if request.method == "POST":
+        # getting user inputs from frontend
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        # authenticate credentials
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        messages.error(request, 'Invalid username or password')
+        return redirect('login')
     return render(request, 'login.html')

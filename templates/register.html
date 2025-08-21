@@ -38,9 +38,9 @@
             </div>
 
             <div class="txt_field">
-            <input type="text" name="username" required>
-            <span></span>
-            <label>Username</label>
+                <input type="text" name="username" required>
+                <span></span>
+                <label>Username</label>
             </div>
 
             <div class="txt_field">
@@ -50,15 +50,16 @@
             </div>
 
             <div class="txt_field">
-            <input type="password" name="password" required>
-            <span></span>
-            <label>Password</label>
+                <input type="password" name="password" required>
+                <span></span>
+                <label>Password</label>
             </div>    
 
             <!-- <div class="pass">Forgot Password?</div> -->
             <input type="submit" value="Register">
+            
             <div class="signup_link">
-            Already have an account? <a href="login.html">Login</a>
+                Already have an account? <a href={% url "login" %}>Login</a>
             </div>
         </form>
         </div>
