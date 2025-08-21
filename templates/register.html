@@ -1,54 +1,67 @@
 <!DOCTYPE html>
 <!-- Coding By CodingNepal - youtube.com/codingnepal -->
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Register</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="center">
-      <h1>Register</h1>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <title>Register</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <div class="center">
+        <h1>Register</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                {% if message.tags == 'error' %}
+                    <center><h4 style="color: firebrick;">{{message}}</h4></center>
+                {% else %}
+                    <center><h4 style="color: dodgerblue;">{{message}}</h4></center>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
         
-      <form method="POST">
-      
-        <div class="txt_field">
-            <input type="text" required>
-            <span></span>
-            <label>First Name</label>
-          </div>
+        <form method="POST">
 
-          <div class="txt_field">
-            <input type="text" required>
-            <span></span>
-            <label>Last Name</label>
-          </div>
+            {% csrf_token %}
+        
+            <div class="txt_field">
+                <input type="text" name="first_name" required>
+                <span></span>
+                <label>First Name</label>
+            </div>
 
-        <div class="txt_field">
-          <input type="text" required>
-          <span></span>
-          <label>Username</label>
+            <div class="txt_field">
+                <input type="text" name="last_name" required>
+                <span></span>
+                <label>Last Name</label>
+            </div>
+
+            <div class="txt_field">
+            <input type="text" name="username" required>
+            <span></span>
+            <label>Username</label>
+            </div>
+
+            <div class="txt_field">
+                <input type="email" name="email" required>
+                <span></span>
+                <label>Email</label>
+            </div>
+
+            <div class="txt_field">
+            <input type="password" name="password" required>
+            <span></span>
+            <label>Password</label>
+            </div>    
+
+            <!-- <div class="pass">Forgot Password?</div> -->
+            <input type="submit" value="Register">
+            <div class="signup_link">
+            Already have an account? <a href="login.html">Login</a>
+            </div>
+        </form>
         </div>
 
-        <div class="txt_field">
-            <input type="email" required>
-            <span></span>
-            <label>Email</label>
-          </div>
-
-        <div class="txt_field">
-          <input type="password" required>
-          <span></span>
-          <label>Password</label>
-        </div>    
-
-        <!-- <div class="pass">Forgot Password?</div> -->
-        <input type="submit" value="Register">
-        <div class="signup_link">
-          Already have an account? <a href="login.html">Login</a>
-        </div>
-      </form>
-    </div>
-
-  </body>
+    </body>
 </html>
