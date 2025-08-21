@@ -11,10 +11,10 @@ from .models import *
 
 # Create your views here.
 @login_required
-def Home(request):
+def home(request):
     return render(request, 'index.html')
 
-def RegisterView(request):
+def registerView(request):
     if request.method == "POST":
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
@@ -51,7 +51,7 @@ def RegisterView(request):
         return redirect('register')
     return render(request, 'register.html')
 
-def LoginView(request):
+def loginView(request):
     if request.method == "POST":
         # getting user inputs from frontend
         username = request.POST.get('username')
@@ -66,3 +66,7 @@ def LoginView(request):
         messages.error(request, 'Invalid username or password')
         return redirect('login')
     return render(request, 'login.html')
+
+def logoutView(request):
+    logout(request)
+    return redirect('login')
