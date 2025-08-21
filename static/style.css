@@ -9,7 +9,7 @@
 body{
   margin: 0;
   padding: 0;
-  background: linear-gradient(120deg,hsla(238, 100%, 50%, 0.6), hsla(125, 100%, 50%, 0.6));
+  background: linear-gradient(135deg, hsl(0, 0%, 5%) 0%, hsl(240, 28%, 14%) 50%, hsl(224, 48%, 16%) 100%);
   height: 100vh;
   overflow: hidden;
 }
@@ -19,14 +19,13 @@ body{
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
-  background: white;
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
   box-shadow: 10px 10px 15px rgba(0,0,0,0.05);
 }
 .center h1{
   text-align: center;
-  padding: 20px 0;
-  border-bottom: 1px solid silver;
+  padding: 20px 0px 0px;
 }
 .center form{
   padding: 0 40px;
@@ -34,8 +33,8 @@ body{
 }
 form .txt_field{
   position: relative;
-  border-bottom: 2px solid #adadad;
-  margin: 30px 0;
+  border-bottom: 2px solid hsl(0, 0%, 68%);
+  margin: 20px 0;
 }
 .txt_field input{
   width: 100%;
@@ -54,7 +53,7 @@ form .txt_field{
   transform: translateY(-50%);
   font-size: 16px;
   pointer-events: none;
-  transition: .5s;
+  transition: 0.5s;
 }
 .txt_field span::before{
   content: '';

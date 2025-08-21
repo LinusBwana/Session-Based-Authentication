@@ -23,10 +23,11 @@ def registerView(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
 
         user_data_has_error = False
 
-        # make sure email and username are not being used
+        # checking whether email and username are not being used
         if User.objects.filter(username=username).exists():
             user_data_has_error = True
             messages.error(request, 'Username already exists')
@@ -35,9 +36,13 @@ def registerView(request):
             user_data_has_error = True
             messages.error(request, 'Email already exists')
 
-        if len(password) < 5:
+        if len(password) < 8:
             user_data_has_error = True
-            messages.error(request, 'Password must be at least 5 characters')
+            messages.error(request, 'Password must be at least 8 characters')
+
+        if (password != confirm_password):
+            user_data_has_error = True
+            messages.error(request, 'Passwords do not match')
 
         if not user_data_has_error:
             new_user = User.objects.create_user(
@@ -134,9 +139,9 @@ def resetPassword(request, reset_id):
                 passwords_have_error = True
                 messages.error(request, 'Passwords do not match')
 
-            if len(password) < 5:
+            if len(password) < 8:
                 passwords_have_error = True
-                messages.error(request, 'Password must be at least 5 characters long')
+                messages.error(request, 'Password must be at least 8 characters long')
 
             # check to make sure link has not expired
             expiration_time = password_reset_id.created_when + timezone.timedelta(minutes=10)
